@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Emoji Voting</title>
+</head>
+<body>
+
+<h2>Emoji Voting</h2>
+
+<div id="emojis">
+    <div>
+        <span>🥕</span>
+        <button onclick="vote('carrot')">Vote</button>
+        <span id="carrotCount">0</span>
+    </div>
+    <div>
+        <span>🍉</span>
+        <button onclick="vote('watermelon')">Vote</button>
+        <span id="watermelonCount">0</span>
+    </div>
+</div>
+
+<button onclick="showResults()">Show Results</button>
+<div id="winner"></div>
+
+<script>
+var votes = {
+    carrot: 0,
+    watermelon: 0
+};
+
+function vote(emoji) {
+    votes[emoji]++;
+    document.getElementById(emoji + 'Count').textContent = votes[emoji];
+}
+
+function showResults() {
+    var winner = Object.keys(votes).reduce(function(a, b){ return votes[a] > votes[b] ? a : b });
+    document.getElementById('winner').textContent = 'The winner is: ' + winner;
+}
+</script>
+
+</body>
+</html>
